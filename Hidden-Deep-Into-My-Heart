@@ -1,6 +1,26 @@
-### Room Name: Hidden Deep Into My Heart
-Date: February 16, 2026
-
+Room Name: Hidden Deep Into My Heart
 Difficulty: Easy/Medium
 
-Tools Used: Nmap, Gobuster, Hydra (attempted), Browser DevTools
+Tools Used: Nmap, Gobuster, Browser DevTools
+
+Phase 1: Reconnaissance
+Network Scanning: Ran nmap to identify open ports. Found port 5000 hosting a web server.
+
+Directory Discovery: Used gobuster to find hidden endpoints. Found /cupids_secret_vault/ and /administrator.
+
+Phase 2: Vulnerability Analysis
+Inspected the /robots.txt file which is a common place for misconfigurations.
+
+Finding: Discovered a sensitive comment in the file: # cupid_arrow_2026!!!.
+
+Phase 3: Exploitation
+Attempted administrative login at /administrator.
+
+Credential Bypass: Used the discovered string from robots.txt as the password for the admin user.
+
+Result: Successfully authenticated and gained access to the vault/dashboard.
+
+Lessons Learned
+Always check "low-hanging fruit" like robots.txt and source code comments before launching heavy brute-force attacks.
+
+Properly configuring robots.txt is vital; it should never contain credentials or hints for attackers.
